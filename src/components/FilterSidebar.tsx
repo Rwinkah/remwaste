@@ -29,6 +29,7 @@ export function FilterSidebar({
 		(a, b) => a - b
 	);
 	const periods = Array.from(new Set(selectPeriods)).sort((a, b) => a - b);
+
 	const handleSkipSizeChange = (size: number, checked: boolean) => {
 		const newSizes = checked
 			? [...filters.skipSizes, size]
@@ -51,6 +52,20 @@ export function FilterSidebar({
 		onFilterChange({
 			...filters,
 			hirePeriod: value,
+		});
+	};
+
+	const handleHeavyWasteChange = (checked: boolean) => {
+		onFilterChange({
+			...filters,
+			allowsHeavyWaste: checked,
+		});
+	};
+
+	const handleAllowedOnRoadChange = (checked: boolean) => {
+		onFilterChange({
+			...filters,
+			allowedOnRoad: checked,
 		});
 	};
 
@@ -83,6 +98,39 @@ export function FilterSidebar({
 							</div>
 						))}
 					</ScrollArea>
+				</div>
+
+				<div className="w-full mt-4">
+					<div className="flex items-center space-x-2">
+						<Checkbox
+							id="heavy-waste"
+							checked={!!filters.allowsHeavyWaste}
+							onCheckedChange={(checked) =>
+								handleHeavyWasteChange(checked as boolean)
+							}
+							className="border-slate-600 data-[state=checked]:bg-[#3b82f6] data-[state=checked]:border-[#3b82f6]"
+						/>
+						<label
+							htmlFor="heavy-waste"
+							className="text-white text-sm font-light leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+							Allows Heavy Waste
+						</label>
+					</div>
+					<div className="flex items-center space-x-2 mt-2">
+						<Checkbox
+							id="allowed-on-road"
+							checked={!!filters.allowedOnRoad}
+							onCheckedChange={(checked) =>
+								handleAllowedOnRoadChange(checked as boolean)
+							}
+							className="border-slate-600 data-[state=checked]:bg-[#3b82f6] data-[state=checked]:border-[#3b82f6]"
+						/>
+						<label
+							htmlFor="allowed-on-road"
+							className="text-white text-sm font-light leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+							Allowed On Road
+						</label>
+					</div>
 				</div>
 
 				<div className="w-full">
@@ -136,10 +184,6 @@ export function FilterSidebar({
 						</SelectContent>
 					</Select>
 				</div>
-
-				{/* <Button className="w-full bg-[#3b82f6] text-white hover:bg-700">
-					Apply Filters
-				</Button> */}
 			</CardContent>
 		</Card>
 	);

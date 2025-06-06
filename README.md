@@ -1,54 +1,53 @@
-# React + TypeScript + Vite
+# 🛠 Improvements Made
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Approach
+The redesign focused on modularizing the page into discrete components to improve maintainability, readability, and user experience (UX). Each component was reviewed individually to identify inefficiencies and enhance UI/UX consistency.
 
-Currently, two official plugins are available:
+### 🔼 Topbar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Problem:**  
+The original topbar failed to indicate the active page clearly. On mobile, the topbar rendered the full menu, creating a navbar with a visible scrollbar.
 
-## Expanding the ESLint configuration
+**Solution:**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Implemented context-aware rendering to display only the current page title and icon on mobile.
+- Added a Back button to enable navigation to the previous screen (using browser history or route stack).
+- Introduced a Filter button to improve discoverability and interaction with filtering logic.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 🔽 SkipSection
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**Problem:**  
+All sections were stacked inside a single scrollable block. The header disappeared on scroll, leading to a disorienting experience, especially on data-heavy pages.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+**Solution:**
+
+- Decoupled the topbar from the scrollable content to improve user experience when moving through pages.
+- Introduced a dedicated sidebar filter panel (desktop-first, collapsible on mobile) to reduce vertical scrolling and improve data accessibility.
+- Applied component composition principles to enforce single-responsibility and reusable UI logic.
+
+### 🧩 SkipCards
+
+**Problem:**
+
+- Redundant size tags cluttered the UI.
+- Important warnings were buried in the bottom left of the card.
+- The card selection indicator (blue tick) lacked visibility.
+- CTA contained unnecessary duplication of tick icon.
+
+**Solution:**
+
+- Removed size tags since card metadata already communicated this info effectively.
+- Moved warning badges to the top-right corner of each card for better visibility and consistent UX hierarchy.
+- Replaced the blue tick indicator with a more prominent border highlight using conditional styling (`border-blue-500` for active).
+- Removed tick from CTA to streamline call-to-action clarity.
+- Implemented a modal sheet (`<Sheet />`) to display extended skip details (including warning and hidden metadata), enhancing the decision-making process.
+- As a result, the previous Bottom Info Sheet was deprecated, its functionality now integrated contextually within each card’s info sheet.
+
+## 🚀 Result
+
+- Improved responsiveness.
+- Cleaned up visual clutter, reducing cognitive load.
+- Enhanced component reusability and layout scalability.
+- Shifted to a more user-centric design, prioritizing clarity and interaction flow.
+

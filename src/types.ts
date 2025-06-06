@@ -20,4 +20,6 @@ export interface FilterState {
 	priceRange: number[];
 	price: number;
 	hirePeriod: string;
+	allowsHeavyWaste: boolean;
+	allowedOnRoad: boolean;
 }

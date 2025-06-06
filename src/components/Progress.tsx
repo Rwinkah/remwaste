@@ -19,8 +19,8 @@ const steps = [
 ];
 
 export function Progress() {
-	const [active, setActive] = useState<number>(2);
-	const [ActivePage, setActivePage] = useState<{
+	const [active, _setActive] = useState<number>(2);
+	const [ActivePage, _setActivePage] = useState<{
 		icon: React.ElementType;
 		label: string;
 	}>(steps[active]);
@@ -52,7 +52,11 @@ export function Progress() {
 									</span>
 								</div>
 								{index < steps.length - 1 && (
-									<div className="w-16 h-px bg-slate-600 mx-4" />
+									<div
+										className={`w-16 h-px ${
+											index > active - 1 ? "bg-slate-600" : "bg-[#3b82f6]"
+										} mx-4`}
+									/>
 								)}
 							</div>
 						);

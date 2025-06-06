@@ -89,14 +89,7 @@ export function SkipCard({
 									: "bg-slate-700 hover:bg-slate-600 text-white"
 							}
             `}>
-										{selected ? (
-											<>
-												<Check className="w-4 h-4 mr-2" />
-												Selected
-											</>
-										) : (
-											"Hire"
-										)}
+										{selected ? <>Selected</> : "Hire"}
 									</Button>
 								</div>
 							</CardContent>

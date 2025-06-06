@@ -26,12 +26,23 @@ export function filterSkips(
 
 		const priceMatch = skip.price_before_vat <= filter.price;
 
-		// Filter by hire period (if set)
 		const hirePeriodMatch =
 			!filter.hirePeriod ||
 			filter.hirePeriod === "Any" ||
 			skip.hire_period_days === Number(filter.hirePeriod);
 
-		return sizeMatch && priceMatch && hirePeriodMatch;
+		const heavyWasteMatch =
+			!filter.allowsHeavyWaste || skip.allows_heavy_waste === true;
+
+		const allowedOnRoadMatch =
+			!filter.allowedOnRoad || skip.allowed_on_road === true;
+
+		return (
+			sizeMatch &&
+			priceMatch &&
+			hirePeriodMatch &&
+			heavyWasteMatch &&
+			allowedOnRoadMatch
+		);
 	});
 }

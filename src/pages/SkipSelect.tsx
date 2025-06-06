@@ -54,7 +54,7 @@ export default function SkipSelect() {
 
 	console.log(skip);
 	return (
-		<div className="w-full flex flex-col items-center">
+		<div className="w-full flex flex-col items-center xs:p-1 sm:p-[2rem]">
 			<div className="flex gap-5 w-full items-center pb-5 ">
 				<Button variant={"ghost"} className="!p-0 md:hidden">
 					<ChevronLeft color="#3b81f4" size={18} strokeWidth={5} />
@@ -104,7 +104,7 @@ export default function SkipSelect() {
 								</p>
 							</div>
 						</div>
-						<div className=" flex w-full  gap-5 flex-wrap      ">
+						<div className=" flex w-full  gap-5 flex-wrap  items-center justify-center    ">
 							{filterSkips(skipData, filter).map((skips) => (
 								<SkipCard
 									key={skips.id}

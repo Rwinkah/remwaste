@@ -4,7 +4,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TriangleAlert, CircleAlert } from "lucide-react";
 
-import { Check } from "lucide-react";
 import type { SkipData } from "../types";
 import { imageUrl, priceAfterVat } from "@/utils";
 import {

@@ -136,3 +136,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+@media (min-width: 320px) {
+  .xs\:p-1 {
+    padding: 1rem;
+  }
+}
